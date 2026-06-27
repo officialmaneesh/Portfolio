@@ -3,308 +3,599 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maneesh Kumar Jatav | Portfolio</title>
+    <title>Maneesh Kumar Jatav - Portfolio</title>
     <style>
         :root {
-            --primary-color: #0f172a; /* Slate 900 */
-            --accent-color: #0284c7; /* Sky 600 */
-            --text-color: #334155; /* Slate 700 */
-            --bg-color: #f8fafc; /* Slate 50 */
-            --card-bg: #ffffff;
+            --bg-dark: #000000;
+            --neon-green: #39FF14;
+            --neon-glow: rgba(57, 255, 20, 0.4);
+            --card-bg: #0b0f19;
+            --text-white: #ffffff;
+            --text-muted: #a0aec0;
+            --text-dark: #4a5568;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 40px auto;
-            padding: 0 20px;
+        /* Abstract Geometric Background Design from 17053.jpg */
+        .bg-geometric {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.25;
         }
 
-        header {
-            background: var(--primary-color);
-            color: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            text-align: center;
+        .triangle {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-style: solid;
         }
 
-        header h1 {
-            margin: 0 0 10px 0;
-            font-size: 2.5rem;
-            letter-spacing: -0.05em;
+        .t1 {
+            bottom: 10%;
+            left: -5%;
+            border-width: 0 150px 300px 150px;
+            border-color: transparent transparent var(--neon-green) transparent;
+            filter: blur(40px);
         }
 
-        header p {
-            margin: 5px 0 15px 0;
-            font-size: 1.1rem;
-            color: #94a3b8;
+        .t2 {
+            bottom: 25%;
+            left: 15%;
+            border-width: 0 80px 160px 80px;
+            border-color: transparent transparent #1f850b transparent;
+            filter: blur(20px);
+            transform: rotate(35deg);
         }
 
-        .contact-info {
+        .t3 {
+            bottom: -5%;
+            right: -5%;
+            border-width: 0 200px 400px 200px;
+            border-color: transparent transparent #114d05 transparent;
+            filter: blur(60px);
+        }
+
+        /* SCREEN 1: Welcome / Interface Match Container */
+        .welcome-screen {
+            min-height: 100vh;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 15px;
-            font-size: 0.9rem;
-            color: #cbd5e1;
-        }
-
-        .contact-info a {
-            color: #38bdf8;
-            text-decoration: none;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-
-        section {
-            background: var(--card-bg);
-            padding: 35px;
-            margin-top: 25px;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            color: var(--primary-color);
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 8px;
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .skills-category {
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
-        }
-
-        .skills-category strong {
-            display: block;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .item {
-            margin-bottom: 25px;
-        }
-
-        .item:last-child {
-            margin-bottom: 0;
-        }
-
-        .item-header {
-            display: flex;
+            flex-direction: column;
+            align-items: center;
             justify-content: space-between;
-            align-items: baseline;
-            flex-wrap: wrap;
-            margin-bottom: 5px;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            position: relative;
         }
 
-        .item-header h3 {
-            margin: 0;
-            color: var(--primary-color);
-            font-size: 1.2rem;
+        .header-meta {
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            font-size: 0.75rem;
+            color: var(--text-white);
         }
 
-        .item-header h4 {
-            margin: 0;
-            color: var(--accent-color);
+        .header-meta span {
+            display: block;
+            margin-top: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.65rem;
+        }
+
+        .profile-title {
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            font-weight: 400;
+        }
+
+        /* Profile Ring and Frame */
+        .profile-ring {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 6px solid var(--neon-green);
+            box-shadow: 0 0 25px var(--neon-glow), inset 0 0 25px var(--neon-glow);
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .profile-img {
+            width: 105%;
+            height: 105%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
             font-weight: 500;
+            margin-bottom: 1.5rem;
+            max-width: 90%;
         }
 
-        .date {
-            color: #64748b;
+        .about-box {
+            max-width: 600px;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--text-white);
+            margin-bottom: 2rem;
+        }
+
+        .about-box strong {
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.5rem;
+            color: var(--text-white);
             font-size: 0.9rem;
+        }
+
+        .about-box p {
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .about-box .sub-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
             font-style: italic;
         }
 
-        ul {
-            margin: 8px 0 0 0;
-            padding-left: 20px;
+        /* Brand Logo Icon Container */
+        .brand-icon-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
         }
 
-        li {
-            margin-bottom: 5px;
+        .brand-logo-circle {
+            width: 45px;
+            height: 45px;
+            background-color: var(--text-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: var(--bg-dark);
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .soft-skills p {
-            margin: 8px 0;
+        .brand-text {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
         }
 
-        @media (max-width: 600px) {
-            .container { margin: 15px auto; }
-            header { padding: 25px 15px; }
-            .item-header { flex-direction: column; }
-            .date { margin-top: 3px; margin-bottom: 5px; }
+        /* Green Next Page Button from 17053.jpg */
+        .next-btn {
+            background-color: #2b9e09;
+            color: var(--text-white);
+            border: none;
+            width: 100%;
+            max-width: 340px;
+            padding: 1.1rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(43, 158, 9, 0.3);
+        }
+
+        .next-btn:hover {
+            background-color: #35c40b;
+            box-shadow: 0 6px 20px rgba(53, 196, 11, 0.5);
+            transform: translateY(-1px);
+        }
+
+        /* SCREEN 2: Structured Professional Resume Details */
+        .resume-screen {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .grid-layout {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .section-header {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 1.1rem;
+            color: var(--text-white);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            width: 60px;
+            height: 2px;
+            background-color: var(--neon-green);
+        }
+
+        .entry {
+            margin-bottom: 2rem;
+        }
+
+        .entry-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .entry-title {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-white);
+        }
+
+        .entry-meta {
+            color: var(--neon-green);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .entry-sub {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .entry-bullets {
+            list-style: none;
+            padding-left: 0.2rem;
+        }
+
+        .entry-bullets li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .entry-bullets li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--neon-green);
+        }
+
+        /* Skills Pill Layout */
+        .skills-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-group h4 {
+            font-size: 0.85rem;
+            color: var(--text-white);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.6rem;
+        }
+
+        .pill-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .pill {
+            background-color: #111622;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        /* Contact details list */
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            margin-bottom: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            word-break: break-all;
+        }
+
+        .contact-list strong {
+            display: block;
+            color: var(--text-white);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.15rem;
+        }
+
+        .contact-list a {
+            color: var(--neon-green);
+            text-decoration: none;
+        }
+
+        .contact-list a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            font-size: 0.75rem;
+            color: var(--text-dark);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-top: 1px solid rgba(255,255,255,0.02);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        
-        <!-- HEADER -->
-        <header>
-            <h1>Maneesh Kumar Jatav</h1>
-            <p>Computer Science & Engineering Graduate</p>
-            <div class="contact-info">
-                <span>📍 Jaipur, Rajasthan, 302015</span>
-                <span>📞 +91 7023037548</span>
-                <span>📧 <a href="mailto:maneeshbhandari02@gmail.com">maneeshbhandari02@gmail.com</a></span>
-                <span>💼 <a href="https://linkedin.com/in/iammaneesh" target="_blank">linkedin.com/in/iammaneesh</a></span>
-            </div>
-        </header>
-
-        <!-- EDUCATION -->
-        <section id="education">
-            <h2>🎓 Education</h2>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Global Institute of Technology, Jaipur</h3>
-                    <span class="date">2021 - 2025</span>
-                </div>
-                <p style="margin: 0;">Bachelor of Technology (B.Tech) - Computer Science & Engineering</p>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Bhaskar Vidhya Mandir Sr. Sec. School, Nadbai (Bharatpur)</h3>
-                    <span class="date">2018 - 2019</span>
-                </div>
-                <p style="margin: 0;">12th Grade (Science Stream)</p>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Maharshi Dayanand Sr. Sec. School, Jahanpur (Bharatpur)</h3>
-                    <span class="date">2015 - 2016</span>
-                </div>
-                <p style="margin: 0;">10th Grade</p>
-            </div>
-        </section>
-
-        <!-- TECHNICAL SKILLS -->
-        <section id="skills">
-            <h2>🛠️ Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skills-category">
-                    <strong>Languages</strong>
-                    Python, C++
-                </div>
-                <div class="skills-category">
-                    <strong>Frontend Development</strong>
-                    HTML, CSS, JavaScript, React.js, Angular
-                </div>
-                <div class="skills-category">
-                    <strong>Backend Development</strong>
-                    Node.js (Express.js), PHP
-                </div>
-                <div class="skills-category">
-                    <strong>Databases</strong>
-                    SQL, MongoDB
-                </div>
-                <div class="skills-category">
-                    <strong>Tools & Platforms</strong>
-                    Git, GitHub, VS Code
-                </div>
-            </div>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <h2>💼 Professional Experience</h2>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Zidio Development</h3>
-                    <span class="date">Jun 2025 - Aug 2025</span>
-                </div>
-                <h4>Web Developer Intern</h4>
-                <ul>
-                    <li>Built and optimized responsive, user-friendly web interfaces using HTML, CSS, and React.js.</li>
-                    <li>Resolved layout and front-end performance issues to improve general UI responsiveness.</li>
-                </ul>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Upskill Campus</h3>
-                    <span class="date">Jul 2023 - Aug 2023</span>
-                </div>
-                <h4>Data Science & Machine Learning Trainee</h4>
-                <ul>
-                    <li>Utilized Python and machine learning algorithms to preprocess historical datasets and build robust predictive models.</li>
-                    <li>Transformed complex, unstructured raw data into clean formats for algorithmic pattern analysis.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <h2>💻 Projects</h2>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Excel Analytics Platform</h3>
-                </div>
-                <ul>
-                    <li>Developed a full-stack data analytics platform equipped with interactive charts and dynamic performance graphs.</li>
-                    <li>Integrated custom, secure dashboards to facilitate seamless spreadsheet uploads, parsing, and analytical visualizations.</li>
-                </ul>
-            </div>
-            <div class="item">
-                <div class="item-header">
-                    <h3>Blogging Platform</h3>
-                </div>
-                <ul>
-                    <li>Engineered a fully responsive full-stack platform utilizing the MERN stack (MongoDB, Express.js, React.js, Node.js).</li>
-                    <li>Implemented secure user registration and login utilizing JSON Web Tokens (JWT), alongside custom profile management and an administrator control panel.</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- CERTIFICATIONS -->
-        <section id="certifications">
-            <h2>📜 Certifications</h2>
-            <ul>
-                <li>Certificate of Participation - ICAT</li>
-                <li>Python for Data Science - Global Institute of Technology, Jaipur</li>
-            </ul>
-        </section>
-
-        <!-- SOFT SKILLS -->
-        <section id="soft-skills">
-            <h2>🎯 Key Soft Skills</h2>
-            <div class="soft-skills">
-                <p><strong>Problem-Solving:</strong> Strong diagnostic skills, demonstrated by resolving front-end layout bugs and optimizing logic.</p>
-                <p><strong>Teamwork:</strong> Highly collaborative approach, successfully coordinating with peer developers and technical mentors.</p>
-                <p><strong>Communication:</strong> Confident in delivering ideas during team stand-ups, technical documentation drafting, and presentation environments.</p>
-            </div>
-        </section>
-
-        <!-- ADDITIONAL INFORMATION -->
-        <section id="additional">
-            <h2>💡 Additional Information</h2>
-            <ul>
-                <li><strong>Languages:</strong> Hindi (Native), English (Professional), Punjabi (Conversational)</li>
-                <li><strong>Interests & Hobbies:</strong> Reading books (enhances vocabulary and creative perspectives); Playing Cricket (fosters exceptional concentration, discipline, and team dynamics)</li>
-            </ul>
-        </section>
-
+    <!-- Dynamic Art Background Structure -->
+    <div class="bg-geometric">
+        <div class="triangle t1"></div>
+        <div class="triangle t2"></div>
+        <div class="triangle t3"></div>
     </div>
+
+    <!-- Interface Screen Match -->
+    <div class="welcome-screen">
+        <div class="header-meta">
+            My Portfolio
+            <span>Software. Data. Web Systems.</span>
+        </div>
+
+        <h2 class="profile-title">My Profile</h2>
+
+        <div class="profile-ring">
+            <!-- Referencing 16299.jpg verbatim for the user profile source -->
+            <img class="profile-img" src="16299.jpg" alt="Maneesh Kumar Jatav Photo">
+        </div>
+
+        <div>
+            <h1 class="user-name">Maneesh Kumar Jatav</h1>
+            
+            <div class="about-box">
+                <strong>About Me:</strong>
+                <p>"Engineering highly responsive interfaces and transforming complex raw datasets into robust structural models."</p>
+                <p class="sub-text">B.Tech in Computer Science & Engineering</p>
+            </div>
+        </div>
+
+        <div class="brand-icon-area">
+            <div class="brand-logo-circle">M</div>
+            <div class="brand-text">MKJ Systems</div>
+        </div>
+
+        <button class="next-btn" onclick="document.getElementById('resume-content').scrollIntoView({ behavior: 'smooth' });">
+            Next Page &gt;
+        </button>
+    </div>
+
+    <!-- Structured Content Screen -->
+    <div id="resume-content" class="resume-screen">
+        <div class="grid-layout">
+            
+            <!-- Left Side Core Content column -->
+            <div>
+                <!-- Experience Section -->
+                <h3 class="section-header">Professional Experience</h3>
+                
+                <div class="entry">
+                    <div class="entry-title-row">
+                        <h4 class="entry-title">Web Developer Intern</h4>
+                        <span class="entry-meta">Jun 2025 — Aug 2025</span>
+                    </div>
+                    <p class="entry-sub">Zidio Development</p>
+                    <ul class="entry-bullets">
+                        <li>Built and optimized responsive, user-friendly web interfaces using HTML, CSS, and React.js.</li>
+                        <li>Resolved layout and front-end performance issues to improve general UI responsiveness.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title-row">
+                        <h4 class="entry-title">Data Science & Machine Learning Trainee</h4>
+                        <span class="entry-meta">Jul 2023 — Aug 2023</span>
+                    </div>
+                    <p class="entry-sub">Upskill Campus</p>
+                    <ul class="entry-bullets">
+                        <li>Utilized Python and machine learning algorithms to preprocess historical datasets and build robust predictive models.</li>
+                        <li>Transformed complex, unstructured raw data into clean formats for algorithmic pattern analysis.</li>
+                    </ul>
+                </div>
+
+                <!-- Projects Section -->
+                <h3 class="section-header">Featured Projects</h3>
+                
+                <div class="entry">
+                    <div class="entry-title-row">
+                        <h4 class="entry-title">Excel Analytics Platform</h4>
+                        <span class="entry-meta">Full-Stack Data Architecture</span>
+                    </div>
+                    <ul class="entry-bullets">
+                        <li>Developed a full-stack data analytics platform equipped with interactive charts and dynamic performance graphs.</li>
+                        <li>Integrated custom, secure dashboards to facilitate seamless spreadsheet uploads, parsing, and analytical visualizations.</li>
+                    </ul>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title-row">
+                        <h4 class="entry-title">Blogging Platform</h4>
+                        <span class="entry-meta">MERN Stack Deployment</span>
+                    </div>
+                    <ul class="entry-bullets">
+                        <li>Engineered a fully responsive full-stack platform utilizing the MERN stack (MongoDB, Express.js, React.js, Node.js).</li>
+                        <li>Implemented secure user registration and login utilizing JSON Web Tokens (JWT), alongside custom profile management and an administrator control panel.</li>
+                    </ul>
+                </div>
+
+                <!-- Education Section -->
+                <h3 class="section-header">Education</h3>
+                
+                <div class="entry">
+                    <div class="entry-title-row">
+                        <h4 class="entry-title">Global Institute of Technology, Jaipur</h4>
+                        <span class="entry-meta">2021 — 2025</span>
+                    </div>
+                    <p class="entry-sub">Bachelor of Technology (B.Tech) — Computer Science & Engineering</p>
+                </div>
+
+                <div class="entry">
+                    <div class="entry-title-row">
+                        <h4 class="entry-title">Bhaskar Vidhya Mandir Sr. Sec. School, Nadbai</h4>
+                        <span class="entry-meta">2018 — 2019</span>
+                    </div>
+                    <p class="entry-sub">12th Grade (Science Stream)</p>
+                </div>
+            </div>
+
+            <!-- Right Side Sidebar column -->
+            <div>
+                <!-- Contact info -->
+                <h3 class="section-header">Contact</h3>
+                <ul class="contact-list" style="margin-bottom: 3rem;">
+                    <li>
+                        <strong>Location</strong>
+                        Jaipur, Rajasthan, India
+                    </li>
+                    <li>
+                        <strong>Phone</strong>
+                        +91 7023037548
+                    </li>
+                    <li>
+                        <strong>Email Address</strong>
+                        <a href="mailto:maneeshbhandari02@gmail.com">maneeshbhandari02@gmail.com</a>
+                    </li>
+                    <li>
+                        <strong>LinkedIn Profile</strong>
+                        <a href="https://linkedin.com/in/iammaneesh" target="_blank">iammaneesh</a>
+                    </li>
+                </ul>
+
+                <!-- Technical Skills -->
+                <h3 class="section-header">Skills</h3>
+                
+                <div class="skills-group">
+                    <h4>Languages</h4>
+                    <div class="pill-box">
+                        <span class="pill">Python</span>
+                        <span class="pill">C++</span>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h4>Frontend</h4>
+                    <div class="pill-box">
+                        <span class="pill">HTML5</span>
+                        <span class="pill">CSS3</span>
+                        <span class="pill">JavaScript</span>
+                        <span class="pill">React.js</span>
+                        <span class="pill">Angular</span>
+                    </div>
+                </div>
+
+                <div class="skills-group">
+                    <h4>Backend & DB</h4>
+                    <div class="pill-box">
+                        <span class="pill">Node.js</span>
+                        <span class="pill">Express.js</span>
+                        <span class="pill">PHP</span>
+                        <span class="pill">SQL</span>
+                        <span class="pill">MongoDB</span>
+                    </div>
+                </div>
+
+                <div class="skills-group" style="margin-bottom: 3rem;">
+                    <h4>Tools</h4>
+                    <div class="pill-box">
+                        <span class="pill">Git</span>
+                        <span class="pill">GitHub</span>
+                        <span class="pill">VS Code</span>
+                    </div>
+                </div>
+
+                <!-- Core Competencies -->
+                <h3 class="section-header">Key Competencies</h3>
+                <ul class="entry-bullets" style="margin-bottom: 3rem;">
+                    <li>Problem-Solving Architecture</li>
+                    <li>Collaborative Developer Dynamics</li>
+                    <li>Technical Document Drafting</li>
+                </ul>
+
+                <!-- Extra curriculars -->
+                <h3 class="section-header">Interests</h3>
+                <ul class="entry-bullets">
+                    <li>Reading Literature</li>
+                    <li>Competitive Cricket Analytics</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Maneesh Kumar Jatav. Built Cleanly With尊 Semantic Architecture.
+    </footer>
 
 </body>
 </html>
