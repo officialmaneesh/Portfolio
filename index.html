@@ -135,6 +135,58 @@
             display: block;
         }
 
+        /* Photo Upload Overlay Button */
+        .upload-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
+            background: rgba(0, 0, 0, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .upload-overlay:hover {
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        /* Simple CSS drawn Camera Icon */
+        .camera-icon {
+            width: 22px;
+            height: 16px;
+            background-color: var(--text-white);
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .camera-icon::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 5px;
+            width: 12px;
+            height: 4px;
+            background-color: var(--text-white);
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+        }
+
+        .camera-icon::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 6px;
+            width: 10px;
+            height: 10px;
+            background-color: #000;
+            border: 2px solid var(--text-white);
+            border-radius: 50%;
+        }
+
         .user-name {
             font-size: 1.8rem;
             text-transform: uppercase;
@@ -392,14 +444,12 @@
 </head>
 <body>
 
-    <!-- Dynamic Art Background Structure -->
     <div class="bg-geometric">
         <div class="triangle t1"></div>
         <div class="triangle t2"></div>
         <div class="triangle t3"></div>
     </div>
 
-    <!-- Interface Screen Match -->
     <div class="welcome-screen">
         <div class="header-meta">
             My Portfolio
@@ -409,8 +459,12 @@
         <h2 class="profile-title">My Profile</h2>
 
         <div class="profile-ring">
-            <!-- Integrated your active external ImgBB image routing directly -->
-            <img class="profile-img" src="https://i.ibb.co/237mh86K/16299-2.jpg" alt="Maneesh Kumar Jatav Photo">
+            <img id="profile-img" class="profile-img" src="https://i.ibb.co/237mh86K/16299-2.jpg" alt="Maneesh Kumar Jatav Photo">
+            
+            <label for="photo-uploader" class="upload-overlay" title="Update Profile Photo">
+                <span class="camera-icon"></span>
+            </label>
+            <input type="file" id="photo-uploader" accept="image/*" style="display: none;">
         </div>
 
         <div>
@@ -433,13 +487,10 @@
         </button>
     </div>
 
-    <!-- Structured Content Screen -->
     <div id="resume-content" class="resume-screen">
         <div class="grid-layout">
             
-            <!-- Left Side Core Content column -->
             <div>
-                <!-- Experience Section -->
                 <h3 class="section-header">Professional Experience</h3>
                 
                 <div class="entry">
@@ -466,7 +517,6 @@
                     </ul>
                 </div>
 
-                <!-- Projects Section -->
                 <h3 class="section-header">Featured Projects</h3>
                 
                 <div class="entry">
@@ -491,7 +541,6 @@
                     </ul>
                 </div>
 
-                <!-- Education Section -->
                 <h3 class="section-header">Education</h3>
                 
                 <div class="entry">
@@ -511,9 +560,7 @@
                 </div>
             </div>
 
-            <!-- Right Side Sidebar column -->
             <div>
-                <!-- Contact info -->
                 <h3 class="section-header">Contact</h3>
                 <ul class="contact-list" style="margin-bottom: 3rem;">
                     <li>
@@ -534,7 +581,6 @@
                     </li>
                 </ul>
 
-                <!-- Technical Skills -->
                 <h3 class="section-header">Skills</h3>
                 
                 <div class="skills-group">
@@ -576,7 +622,6 @@
                     </div>
                 </div>
 
-                <!-- Core Competencies -->
                 <h3 class="section-header">Key Competencies</h3>
                 <ul class="entry-bullets" style="margin-bottom: 3rem;">
                     <li>Problem-Solving Architecture</li>
@@ -584,7 +629,6 @@
                     <li>Technical Document Drafting</li>
                 </ul>
 
-                <!-- Extra curriculars -->
                 <h3 class="section-header">Interests</h3>
                 <ul class="entry-bullets">
                     <li>Reading Literature</li>
@@ -595,10 +639,23 @@
         </div>
     </div>
 
-    <!-- Cleaned Footer Text -->
     <footer>
         &copy; 2026 Maneesh Kumar Jatav.
     </footer>
+
+    <script>
+        document.getElementById('photo-uploader').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Smoothly updates the profile circle source URL
+                    document.getElementById('profile-img').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
 
 </body>
 </html>
