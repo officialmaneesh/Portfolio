@@ -3,459 +3,611 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maneesh Kumar Jatav | Portfolio</title>
+    <title>Maneesh Kumar Jatav | Full-Stack Developer Portfolio</title>
     <style>
         :root {
-            --bg-color: #ffffff;
-            --text-color: #37352f;
-            --text-secondary: #6b6a65;
-            --border-color: #e9e9e7;
-            --block-bg: #f7f7f5;
-            --accent-yellow: #ffeab6;
-            --accent-blue: #e3f2fd;
-            --accent-green: #e8f5e9;
-            --tag-pink: #fde4e4;
-            --tag-blue: #e1f5fe;
+            --bg-main: #0b0f19;
+            --bg-card: #131a26;
+            --bg-tag: #1e293b;
+            --border-color: #263347;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-glow: #38bdf8;
+            --accent-green: #34d399;
+            --accent-amber: #fbbf24;
+            --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            font-family: var(--font-stack);
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-main);
+            color: var(--text-primary);
             line-height: 1.6;
-            padding-bottom: 60px;
+            padding: 0;
+            margin: 0;
         }
 
-        .banner {
-            height: 160px;
-            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+        /* Hero Banner Decorator */
+        .hero-banner {
+            height: 8px;
+            background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #34d399 100%);
             width: 100%;
         }
 
         .container {
-            max-width: 700px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 40px 24px;
         }
 
-        .profile-img-container {
-            margin-top: -60px; 
-            margin-bottom: 20px;
-            display: inline-block;
+        /* Header / Profile Section */
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 40px;
         }
 
-        .profile-img {
-            width: 110px;
-            height: 110px;
-            background-color: #f1f1ef;
-            border: 4px solid var(--bg-color);
-            border-radius: 24px;
+        .profile-avatar {
+            font-size: 3.5rem;
+            background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, rgba(0,0,0,0) 70%);
+            padding: 10px;
+            border-radius: 50%;
+            border: 1px solid rgba(56, 189, 248, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 45px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+            width: 90px;
+            height: 90px;
         }
 
-        h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
+        .profile-title h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
             letter-spacing: -0.5px;
-            line-height: 1.3;
+            background: linear-gradient(to right, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        h2 {
-            font-size: 1.5rem;
+        .profile-title p {
+            color: var(--accent-glow);
             font-weight: 600;
-            margin: 35px 0 15px 0;
-            padding-bottom: 8px;
+            font-size: 1.1rem;
+            margin-top: 4px;
         }
 
-        h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin: 20px 0 10px 0;
-        }
-
-        .border-bottom {
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        p {
-            margin-bottom: 16px;
-            color: #37352f;
-            font-size: 1.05rem;
-        }
-
-        ul {
-            list-style: none;
-            margin-bottom: 25px;
-        }
-
-        ul li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-            color: #37352f;
-        }
-
-        ul li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
+        /* Bio & Meta Links */
+        .bio {
+            font-size: 1.1rem;
             color: var(--text-secondary);
-            font-size: 1.2rem;
-            top: -2px;
+            margin-bottom: 30px;
         }
 
-        .card ul {
-            margin-bottom: 0;
-            margin-top: 10px;
-        }
-
-        .card ul li {
-            font-size: 0.95rem;
-            color: #4b4a45;
-        }
-
-        .links-section {
-            margin: 25px 0;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .links-section a {
-            display: flex;
-            align-items: center;
-            color: var(--text-color);
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            font-weight: 500;
-            width: fit-content;
-        }
-
-        .links-section a span {
-            margin-right: 6px;
-            text-decoration: none;
-        }
-
-        .card {
+        .quick-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px;
+            background: rgba(19, 26, 38, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 20px;
-            margin-bottom: 20px;
-            background: #fff;
+            margin-bottom: 40px;
         }
 
-        .card-header {
+        .meta-item {
             display: flex;
             align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        a.meta-item:hover {
+            color: var(--accent-glow);
+        }
+
+        .meta-item span {
+            font-size: 1.2rem;
+        }
+
+        /* Section Settings */
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2.section-heading {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+        }
+
+        h2.section-heading::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--border-color);
+        }
+
+        /* Grid Framework for Dynamic Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .custom-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .custom-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(56, 189, 248, 0.5);
+        }
+
+        .card-top {
+            display: flex;
             justify-content: space-between;
+            align-items: flex-start;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 12px;
+            margin-bottom: 6px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
             font-weight: 600;
-            font-size: 1.1rem;
-            margin-bottom: 4px;
+            color: #ffffff;
         }
 
         .card-subtitle {
             font-size: 0.95rem;
-            font-style: italic;
+            color: var(--accent-glow);
+            margin-bottom: 14px;
+        }
+
+        .duration-tag {
+            font-size: 0.8rem;
+            background-color: var(--bg-tag);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            font-weight: 500;
+        }
+
+        /* Lists formatting inside cards */
+        .custom-card ul {
+            list-style: none;
+        }
+
+        .custom-card ul li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .custom-card ul li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: var(--accent-glow);
+        }
+
+        /* Action Badge Tags */
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0;
+        }
+
+        .action-badge {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.2s ease;
+        }
+
+        .badge-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .badge-verified {
+            background-color: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--accent-glow);
+        }
+
+        .action-badge:hover {
+            opacity: 0.85;
+        }
+
+        /* Skills Layout */
+        .skills-container {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 8px 16px;
+        }
+
+        .skill-row {
+            display: flex;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-row:last-child {
+            border-bottom: none;
+        }
+
+        .skill-category {
+            font-weight: 600;
+            width: 220px;
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+
+        .skill-items {
+            flex: 1;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            min-width: 250px;
+        }
+
+        /* Certifications List styles */
+        .cert-list li {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 14px 20px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .cert-link {
+            color: var(--accent-glow);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .cert-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Two Column Block Layout */
+        .two-column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .info-block {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .info-block p {
+            font-size: 0.95rem;
             color: var(--text-secondary);
             margin-bottom: 8px;
         }
 
-        .tag-container {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin: 8px 0;
-            align-items: center;
-        }
-
-        .tag {
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 500;
-            text-decoration: none;
-        }
-
-        .tag-tech { background-color: var(--accent-blue); color: #1e88e5; }
-        .tag-exp { background-color: var(--tag-pink); color: #d32f2f; }
-        .tag-proj { background-color: var(--accent-green); color: #388e3c; }
-        .tag-date { background-color: var(--block-bg); color: var(--text-secondary); }
-        
-        .tag-link { 
-            background-color: var(--accent-yellow); 
-            color: #b78103; 
-            border: 1px solid rgba(183, 129, 3, 0.2);
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .tag-link:hover {
-            opacity: 0.85;
-            transform: translateY(-1px);
-        }
-
-        .skills-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        .skills-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--border-color);
-            vertical-align: top;
-            font-size: 1.05rem;
-        }
-
-        .skills-table td:first-child {
-            font-weight: 600;
-            width: 30%;
-            color: var(--text-color);
-        }
-
-        .skills-table td:last-child {
-            color: #4b4a45;
-        }
-
+        /* Form Controls */
         form {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        .form-full {
+            grid-column: span 2;
         }
 
         input, textarea {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            background-color: var(--block-bg);
+            background-color: var(--bg-main);
             font-size: 0.95rem;
-            color: var(--text-color);
+            color: #ffffff;
             outline: none;
+            transition: border-color 0.2s ease;
         }
 
         input:focus, textarea:focus {
-            border-color: #a6c1ee;
-            background-color: #fff;
+            border-color: var(--accent-glow);
         }
 
         button {
-            background-color: #000000;
-            color: #ffffff;
+            grid-column: span 2;
+            background-color: var(--accent-glow);
+            color: var(--bg-main);
             border: none;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 8px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s ease;
             width: fit-content;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95rem;
+            justify-self: end;
         }
 
         button:hover {
             opacity: 0.9;
+            transform: translateY(-1px);
         }
 
-        .info-row {
-            margin-bottom: 12px;
+        @media (max-width: 768px) {
+            form fieldset, form input, form textarea, form button, form .form-full {
+                grid-column: span 2;
+            }
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="banner"></div>
+    <div class="hero-banner"></div>
 
     <div class="container">
-        <div class="profile-img-container">
-            <div class="profile-img">👨‍💻</div>
-        </div>
+        
+        <!-- HEADER -->
+        <header class="profile-header">
+            <div class="profile-avatar">👨‍💻</div>
+            <div class="profile-title">
+                <h1>Maneesh Kumar Jatav</h1>
+                <p>Full-Stack Web Developer & CSE Graduate</p>
+            </div>
+        </header>
 
-        <div class="main-content">
-            <h1>Hey, I'm Maneesh 🚀</h1>
+        <!-- BIO SECTION -->
+        <section>
+            <p class="bio">
+                I specialize in engineering responsive, user-centric interfaces and highly scalable backend architectures. Leveraging the MERN ecosystem along with rigorous algorithmic problem-solving paradigms, I transition complex visual and logical criteria into stable, operational software models.
+            </p>
             
-            <p>I am a passionate Computer Science & Engineering graduate and Web Developer. I specialize in building responsive, user-friendly web interfaces and robust backend architectures using modern technologies like React.js, Node.js, and the MERN stack.</p>
+            <div class="quick-meta">
+                <a href="mailto:maneeshbhandari02@gmail.com" class="meta-item"><span>✉️</span> maneeshbhandari02@gmail.com</a>
+                <a href="tel:+917023037548" class="meta-item"><span>📞</span> +91 7023037548</a>
+                <a href="https://linkedin.com/in/iammaneesh" target="_blank" class="meta-item"><span>🔗</span> linkedin.com/in/iammaneesh</a>
+                <a href="https://raw.githubusercontent.com/officialmaneesh/Excel_Analytics_Platform/main/Maneesh_Kumar_Jatav_Resume.jpg" target="_blank" class="meta-item"><span>📄</span> View Full Resume Document</a>
+                <div class="meta-item form-full"><span>📍</span> Gali Number 8, Barkat Nagar, Tonk Phatak, Jaipur, RJ 302015</div>
+            </div>
+        </section>
+
+        <!-- TECHNICAL STILLS -->
+        <section id="skills">
+            <h2 class="section-heading">Technical Architecture</h2>
+            <div class="skills-container">
+                <div class="skill-row">
+                    <div class="skill-category">Core Languages</div>
+                    <div class="skill-items">Python, C++</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-category">Frontend Stack</div>
+                    <div class="skill-items">HTML5, CSS3, JavaScript (ES6+), React.js, Angular</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-category">Backend Environments</div>
+                    <div class="skill-items">Node.js (Express.js), PHP</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-category">Database Architectures</div>
+                    <div class="skill-items">SQL, MongoDB</div>
+                </div>
+                <div class="skill-row">
+                    <div class="skill-category">Tools & Systems</div>
+                    <div class="skill-items">Git, GitHub, Visual Studio Code</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROFESSIONAL EXPERIENCE -->
+        <section id="experience">
+            <h2 class="section-heading">Professional Track</h2>
+            <div class="card-grid">
+                
+                <div class="custom-card">
+                    <div class="card-top">
+                        <span class="card-title">Zidio Development</span>
+                        <span class="duration-tag">Jun 2025 – Aug 2025</span>
+                    </div>
+                    <div class="card-subtitle">Web Developer Intern</div>
+                    <ul>
+                        <li>Architected and refactored layout frameworks ensuring high cross-platform compatibility metrics via React.js.</li>
+                        <li>Identified and eliminated structural DOM layout performance blockers to speed up interaction responses.</li>
+                    </ul>
+                    <div class="badge-container">
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_739.jpg" target="_blank" class="action-badge badge-verified">📜 Verification Certificate</a>
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_736.jpg" target="_blank" class="action-badge badge-verified">📜 Training Attestation</a>
+                    </div>
+                </div>
+
+                <div class="custom-card">
+                    <div class="card-top">
+                        <span class="card-title">Upskill Campus</span>
+                        <span class="duration-tag">Jul 2023 – Aug 2023</span>
+                    </div>
+                    <div class="card-subtitle">Data Science & Machine Learning Trainee</div>
+                    <ul>
+                        <li>Processed massive historical record matrices utilizing Python libraries to engineer descriptive forecasting structures.</li>
+                        <li>Transformed multi-variant anomalous runtime system files into valid uniform datasets ready for downstream logic execution.</li>
+                    </ul>
+                    <div class="badge-container">
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_740.jpg" target="_blank" class="action-badge badge-verified">📜 Completion Document</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FEATURED ENGINEERING PROJECTS -->
+        <section id="projects">
+            <h2 class="section-heading">Featured Implementations</h2>
+            <div class="card-grid">
+                
+                <div class="custom-card">
+                    <div class="card-top">
+                        <span class="card-title">Excel Analytics Platform</span>
+                        <span class="duration-tag">Full-Stack Architecture</span>
+                    </div>
+                    <div class="card-subtitle">Integrated Data Processing Engine</div>
+                    <ul>
+                        <li>Created automated processing pipelines that successfully transform raw spreadsheets into structured interactive JSON datasets.</li>
+                        <li>Built interactive asynchronous browser layout charts mapped directly onto live backend calculation matrices.</li>
+                    </ul>
+                    <div class="badge-container">
+                        <a href="https://github.com/officialmaneesh/Excel_Analytics_Platform" target="_blank" class="action-badge badge-outline">🔗 View Source Code</a>
+                    </div>
+                </div>
+
+                <div class="custom-card">
+                    <div class="card-top">
+                        <span class="card-title">Blogging Platform Application</span>
+                        <span class="duration-tag">MERN Stack Deployment</span>
+                    </div>
+                    <div class="card-subtitle">Restful Engine & Session Infrastructure</div>
+                    <ul>
+                        <li>Structured safe cryptographically hashed verification logic utilizing JSON Web Tokens (JWT) mapped into state workflows.</li>
+                        <li>Implemented atomic database updates for customized nested dashboards alongside distinct administration clearance paths.</li>
+                    </ul>
+                    <div class="badge-container">
+                        <a href="https://github.com/officialmaneesh/Blogging_Platform" target="_blank" class="action-badge badge-outline">🔗 View Source Code</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- EDUCATION & TRAINING TRACK -->
+        <section id="education">
+            <h2 class="section-heading">Education History</h2>
+            <div class="card-grid">
+                <div class="custom-card">
+                    <div class="card-top">
+                        <span class="card-title">Global Institute of Technology, Jaipur</span>
+                        <span class="duration-tag">2021 – 2025</span>
+                    </div>
+                    <div class="card-subtitle">Bachelor of Technology (B.Tech) — Computer Science & Engineering</div>
+                </div>
+                <div class="two-column">
+                    <div class="info-block">
+                        <div class="card-top">
+                            <span style="font-weight:600;">Bhaskar Vidhya Mandir School</span>
+                            <span class="duration-tag">2019</span>
+                        </div>
+                        <p style="margin-top:4px;">12th Grade (Science Stream)</p>
+                    </div>
+                    <div class="info-block">
+                        <div class="card-top">
+                            <span style="font-weight:600;">Maharshi Dayanand School</span>
+                            <span class="duration-tag">2016</span>
+                        </div>
+                        <p style="margin-top:4px;">10th Grade Standard Curriculum</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ACCREDITATIONS & CORE APTITUDES -->
+        <section class="two-column">
+            <div>
+                <h2 class="section-heading">Accreditations</h2>
+                <ul class="cert-list">
+                    <li>
+                        <span>Python for Data Science</span>
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_741.jpg" target="_blank" class="cert-link">[Open File]</a>
+                    </li>
+                    <li>
+                        <span>ICAT Global Attendance Certificate</span>
+                        <span style="color:var(--text-secondary); font-size:0.85rem;">[Verified]</span>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="section-heading">Soft Competencies</h2>
+                <ul class="cert-list" style="color: var(--text-secondary); font-size: 0.95rem;">
+                    <li style="display:block;"><strong>Diagnostic Problem-Solving:</strong> Root-cause debugging execution.</li>
+                    <li style="display:block;"><strong>Collaborative Agile Workflow:</strong> Synchronized team pipelines.</li>
+                    <li style="display:block;"><strong>Technical Communication:</strong> Lucid codebase documentation architecture.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- METADATA ADDITIONS -->
+        <section>
+            <h2 class="section-heading">Additional Diagnostics</h2>
+            <div class="info-block">
+                <p><strong>Lingual Spectrum:</strong> Hindi (Native proficiency), English (Professional operational scale), Punjabi (Conversational capability)</p>
+                <p style="margin-top: 12px;"><strong>Interests & Focus Disciplines:</strong> Literary analysis to augment language structure capabilities; Cricket performance telemetry to understand focus variables under stress models.</p>
+            </div>
+        </section>
+
+        <!-- COMMUNICATIONS ROUTER -->
+        <section id="contact">
+            <h2 class="section-heading">Initialize Communication</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">
+                Looking for production-ready frontend solutions, RESTful API scaling, or data pipeline deployments? Fill out the router transmission below.
+            </p>
             
-            <p>With a strong foundation in algorithmic thinking and full-stack development, I enjoy transforming complex requirements into clean, structured, high-performing code solutions.</p>
-
-            <div class="links-section">
-                <a href="mailto:maneeshbhandari02@gmail.com"><span>✉️</span> maneeshbhandari02@gmail.com</a>
-                <a href="tel:+917023037548"><span>📞</span> +91 7023037548</a>
-                <a href="https://linkedin.com/in/iammaneesh" target="_blank"><span>🔗</span> LinkedIn Profile</a>
-                <a href="https://raw.githubusercontent.com/officialmaneesh/Excel_Analytics_Platform/main/Maneesh_Kumar_Jatav_Resume.jpg" target="_blank"><span>📄</span> View Full Resume</a>
-                <p style="margin: 0; font-size: 0.95rem; color: var(--text-secondary); width: 100%;">📍 Gali Number 8, Barkat Nagar, Tonk Phatak, Jaipur, Rajasthan 302015</p>
-            </div>
-
-            <h2 class="border-bottom">Education</h2>
-            
-            <div class="card">
-                <div class="card-header">
-                    <span>Global Institute of Technology, Jaipur</span>
-                    <span class="tag tag-date">2021 – 2025</span>
-                </div>
-                <div class="card-subtitle">Bachelor of Technology (B.Tech) – Computer Science & Engineering</div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span>Bhaskar Vidhya Mandir Sr. Sec. School, Nadbai (Bharatpur)</span>
-                    <span class="tag tag-date">2018 – 2019</span>
-                </div>
-                <div class="card-subtitle">12th Grade (Science Stream)</div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span>Maharshi Dayanand Sr. Sec. School, Jahanpur (Bharatpur)</span>
-                    <span class="tag tag-date">2015 – 2016</span>
-                </div>
-                <div class="card-subtitle">10th Grade</div>
-            </div>
-
-            <h2 class="border-bottom">Technical Skills</h2>
-            <table class="skills-table">
-                <tr>
-                    <td>Languages:</td>
-                    <td>Python, C++</td>
-                </tr>
-                <tr>
-                    <td>Frontend Development:</td>
-                    <td>HTML, CSS, JavaScript, React.js, Angular</td>
-                </tr>
-                <tr>
-                    <td>Backend Development:</td>
-                    <td>Node.js (Express.js), PHP</td>
-                </tr>
-                <tr>
-                    <td>Databases:</td>
-                    <td>SQL, MongoDB</td>
-                </tr>
-                <tr>
-                    <td>Tools & Platforms:</td>
-                    <td>Git, GitHub, VS Code</td>
-                </tr>
-            </table>
-
-            <h2 class="border-bottom">Professional Experience</h2>
-
-            <div class="card">
-                <div class="card-header">
-                    <span>🏢 Zidio Development</span>
-                    <span class="tag tag-date">Jun 2025 – Aug 2025</span>
-                </div>
-                <div class="card-subtitle">Web Developer Intern</div>
-                <div class="tag-container">
-                    <span class="tag tag-exp">Internship</span>
-                    <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_739.jpg" target="_blank" class="tag tag-link">📜 Certificate of Internship</a>
-                    <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_736.jpg" target="_blank" class="tag tag-link">📜 Certificate of Training</a>
-                </div>
-                <ul>
-                    <li>Built and optimized responsive, user-friendly web interfaces using HTML, CSS, and React.js.</li>
-                    <li>Resolved layout and front-end performance issues to improve general UI responsiveness.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span>🏢 Upskill Campus</span>
-                    <span class="tag tag-date">Jul 2023 – Aug 2023</span>
-                </div>
-                <div class="card-subtitle">Data Science & Machine Learning Trainee</div>
-                <div class="tag-container">
-                    <span class="tag tag-exp">Trainee Track</span>
-                    <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_740.jpg" target="_blank" class="tag tag-link">📜 Certificate of Internship</a>
-                </div>
-                <ul>
-                    <li>Utilized Python and machine learning algorithms to preprocess historical datasets and build robust predictive models.</li>
-                    <li>Transformed complex, unstructured raw data into clean formats for algorithmic pattern analysis.</li>
-                </ul>
-            </div>
-
-            <h2 class="border-bottom">Featured Projects</h2>
-
-            <div class="card">
-                <div class="card-header">
-                    <span>💻 Excel Analytics Platform</span>
-                    <span class="tag tag-proj">Full-Stack</span>
-                </div>
-                <div class="tag-container">
-                    <a href="https://github.com/officialmaneesh/Excel_Analytics_Platform" target="_blank" class="tag tag-link">🔗 GitHub Repository</a>
-                </div>
-                <ul>
-                    <li>Developed a full-stack data analytics platform equipped with interactive charts and dynamic performance graphs.</li>
-                    <li>Integrated custom, secure dashboards to facilitate seamless spreadsheet uploads, parsing, and analytical visualizations.</li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <div class="card-header">
-                    <span>📝 Blogging Platform App</span>
-                    <span class="tag tag-proj">MERN Stack</span>
-                </div>
-                <div class="tag-container">
-                    <a href="https://github.com/officialmaneesh/Blogging_Platform" target="_blank" class="tag tag-link">🔗 GitHub Repository</a>
-                </div>
-                <ul>
-                    <li>Engineered a fully responsive full-stack platform utilizing the MERN stack (MongoDB, Express.js, React.js, Node.js).</li>
-                    <li>Implemented secure user registration and login utilizing JSON Web Tokens (JWT), alongside custom profile management and an administrator control panel.</li>
-                </ul>
-            </div>
-
-            <h2 class="border-bottom">Certifications</h2>
-            <ul>
-                <li><strong>Certificate of Participation – ICAT</strong></li>
-                <li>
-                    <strong>Python for Data Science – Global Institute of Technology, Jaipur</strong> 
-                    <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_741.jpg" target="_blank" style="margin-left: 8px; color: #1e88e5; text-decoration: underline; font-size: 0.9rem;">[View Certificate]</a>
-                </li>
-            </ul>
-
-            <h2 class="border-bottom">Key Soft Skills</h2>
-            <ul>
-                <li><strong>Problem-Solving:</strong> Strong diagnostic skills, demonstrated by resolving front-end layout bugs and optimizing logic.</li>
-                <li><strong>Teamwork:</strong> Highly collaborative approach, successfully coordinating with peer developers and technical mentors.</li>
-                <li><strong>Communication:</strong> Confident in delivering ideas during team stand-ups, technical documentation drafting, and presentation environments.</li>
-            </ul>
-
-            <h2 class="border-bottom">Additional Information</h2>
-            <div class="info-row">
-                <strong>Languages:</strong> Hindi (Native), English (Professional), Punjabi (Conversational)
-            </div>
-            <div class="info-row">
-                <strong>Interests & Hobbies:</strong> 
-                <ul>
-                    <li>📚 Reading books (enhances vocabulary and creative perspectives)</li>
-                    <li>🏏 Playing Cricket (fosters exceptional concentration, discipline, and team dynamics)</li>
-                </ul>
-            </div>
-
-            <h2 class="border-bottom">Let’s create something together 🎨</h2>
-            <p>Frontend Engineering, API architectures, MERN platform structures, or data analytics applications. Drop me a message, and I'll get back to you immediately!</p>
-
             <form action="#" method="POST">
-                <input type="text" name="firstname" placeholder="First name" required>
-                <input type="text" name="lastname" placeholder="Last name">
-                <input type="email" name="email" placeholder="Email address" required>
-                <textarea name="message" rows="4" placeholder="How can I help you?" required></textarea>
-                <button type="submit">Send Message ➔</button>
+                <input type="text" name="firstname" placeholder="First name / Organization" required>
+                <input type="text" name="lastname" placeholder="Last name (Optional)">
+                <input type="email" name="email" placeholder="Secure return communication email" class="form-full" required>
+                <textarea name="message" rows="5" placeholder="Detail your project architecture goals or deployment requirements..." class="form-full" required></textarea>
+                <button type="submit">Transmit Message ➔</button>
             </form>
-        </div>
+        </section>
+
     </div>
 
 </body>
