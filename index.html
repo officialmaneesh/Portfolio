@@ -1,3 +1,5 @@
+Here is the corrected code. The overlapping metadata section has been completely refactored using clean block components that elegantly stack vertically on mobile screens without squishing text. All image filenames have been mapped accurately to their correct functional slots.
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +36,6 @@
             margin: 0;
         }
 
-        /* Hero Banner Decorator */
         .hero-banner {
             height: 8px;
             background: linear-gradient(90deg, #38bdf8 0%, #818cf8 50%, #34d399 100%);
@@ -47,7 +48,6 @@
             padding: 40px 24px;
         }
 
-        /* Header / Profile Section */
         .profile-header {
             display: flex;
             align-items: center;
@@ -86,32 +86,40 @@
             margin-top: 4px;
         }
 
-        /* Bio & Meta Links */
         .bio {
             font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 30px;
         }
 
-        .quick-meta {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 16px;
+        /* Fixed Mobile Overlapping Layout: Switch to flexible block column system */
+        .quick-meta-box {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
             background: rgba(19, 26, 38, 0.6);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 20px;
+            padding: 24px;
             margin-bottom: 40px;
         }
 
-        .meta-item {
+        .meta-row {
             display: flex;
+            flex-wrap: wrap;
+            gap: 16px 28px;
+            align-items: center;
+        }
+
+        .meta-item {
+            display: inline-flex;
             align-items: center;
             gap: 10px;
             color: var(--text-secondary);
-            font-size: 0.95rem;
+            font-size: 0.98rem;
             text-decoration: none;
             transition: color 0.2s ease;
+            min-width: fit-content;
         }
 
         a.meta-item:hover {
@@ -120,9 +128,16 @@
 
         .meta-item span {
             font-size: 1.2rem;
+            display: inline-block;
         }
 
-        /* Section Settings */
+        .meta-divider {
+            height: 1px;
+            background-color: var(--border-color);
+            width: 100%;
+            margin: 2px 0;
+        }
+
         section {
             margin-bottom: 50px;
         }
@@ -144,7 +159,6 @@
             background-color: var(--border-color);
         }
 
-        /* Grid Framework for Dynamic Cards */
         .card-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -197,7 +211,6 @@
             font-weight: 500;
         }
 
-        /* Lists formatting inside cards */
         .custom-card ul {
             list-style: none;
         }
@@ -217,12 +230,11 @@
             color: var(--accent-glow);
         }
 
-        /* Action Badge Tags */
         .badge-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin: 12px 0;
+            margin: 16px 0 4px 0;
         }
 
         .action-badge {
@@ -253,7 +265,6 @@
             opacity: 0.85;
         }
 
-        /* Skills Layout */
         .skills-container {
             background-color: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -287,7 +298,6 @@
             min-width: 250px;
         }
 
-        /* Certifications List styles */
         .cert-list li {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -312,7 +322,6 @@
             text-decoration: underline;
         }
 
-        /* Two Column Block Layout */
         .two-column {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -332,7 +341,6 @@
             margin-bottom: 8px;
         }
 
-        /* Form Controls */
         form {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -391,6 +399,11 @@
                 flex-direction: column;
                 text-align: center;
             }
+            .meta-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
         }
     </style>
 </head>
@@ -415,16 +428,27 @@
                 I specialize in engineering responsive, user-centric interfaces and highly scalable backend architectures. Leveraging the MERN ecosystem along with rigorous algorithmic problem-solving paradigms, I transition complex visual and logical criteria into stable, operational software models.
             </p>
             
-            <div class="quick-meta">
-                <a href="mailto:maneeshbhandari02@gmail.com" class="meta-item"><span>✉️</span> maneeshbhandari02@gmail.com</a>
-                <a href="tel:+917023037548" class="meta-item"><span>📞</span> +91 7023037548</a>
-                <a href="https://linkedin.com/in/iammaneesh" target="_blank" class="meta-item"><span>🔗</span> linkedin.com/in/iammaneesh</a>
-                <a href="https://raw.githubusercontent.com/officialmaneesh/Excel_Analytics_Platform/main/Maneesh_Kumar_Jatav_Resume.jpg" target="_blank" class="meta-item"><span>📄</span> View Full Resume Document</a>
-                <div class="meta-item form-full"><span>📍</span> Gali Number 8, Barkat Nagar, Tonk Phatak, Jaipur, RJ 302015</div>
+            <!-- REFACTORED QUICK META BOX (Anti-overlapping system) -->
+            <div class="quick-meta-box">
+                <div class="meta-row">
+                    <a href="mailto:maneeshbhandari02@gmail.com" class="meta-item"><span>✉️</span> maneeshbhandari02@gmail.com</a>
+                    <a href="tel:+917023037548" class="meta-item"><span>📞</span> +91 7023037548</a>
+                </div>
+                
+                <div class="meta-divider"></div>
+                
+                <div class="meta-row">
+                    <a href="https://linkedin.com/in/iammaneesh" target="_blank" class="meta-item"><span>🔗</span> linkedin.com/in/iammaneesh</a>
+                    <a href="17967.jpg" target="_blank" class="meta-item"><span>📄</span> View Full Resume Document</a>
+                </div>
+                
+                <div class="meta-divider"></div>
+                
+                <div class="meta-item"><span>📍</span> Gali Number 8, Barkat Nagar, Tonk Phatak, Jaipur, RJ 302015</div>
             </div>
         </section>
 
-        <!-- TECHNICAL STILLS -->
+        <!-- TECHNICAL SKILLS -->
         <section id="skills">
             <h2 class="section-heading">Technical Architecture</h2>
             <div class="skills-container">
@@ -467,8 +491,8 @@
                         <li>Identified and eliminated structural DOM layout performance blockers to speed up interaction responses.</li>
                     </ul>
                     <div class="badge-container">
-                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_739.jpg" target="_blank" class="action-badge badge-verified">📜 Verification Certificate</a>
-                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_736.jpg" target="_blank" class="action-badge badge-verified">📜 Training Attestation</a>
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_739_2.jpg" target="_blank" class="action-badge badge-verified">📜 Verification Certificate</a>
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_736_2.jpg" target="_blank" class="action-badge badge-verified">📜 Training Attestation</a>
                     </div>
                 </div>
 
@@ -483,7 +507,7 @@
                         <li>Transformed multi-variant anomalous runtime system files into valid uniform datasets ready for downstream logic execution.</li>
                     </ul>
                     <div class="badge-container">
-                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_740.jpg" target="_blank" class="action-badge badge-verified">📜 Completion Document</a>
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_740_2.jpg" target="_blank" class="action-badge badge-verified">📜 Completion Document</a>
                     </div>
                 </div>
 
@@ -564,12 +588,12 @@
                 <h2 class="section-heading">Accreditations</h2>
                 <ul class="cert-list">
                     <li>
-                        <span>Python for Data Science</span>
-                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_741.jpg" target="_blank" class="cert-link">[Open File]</a>
+                        <span>ICAT Participation Certificate</span>
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_738.jpg" target="_blank" class="cert-link">[Open File]</a>
                     </li>
                     <li>
-                        <span>ICAT Global Attendance Certificate</span>
-                        <span style="color:var(--text-secondary); font-size:0.85rem;">[Verified]</span>
+                        <span>Python for Data Science</span>
+                        <a href="388c6763-cc8e-4c0a-93e0-3e12c62b93b1-1_all_741_2.jpg" target="_blank" class="cert-link">[Open File]</a>
                     </li>
                 </ul>
             </div>
@@ -612,3 +636,5 @@
 
 </body>
 </html>
+
+```
